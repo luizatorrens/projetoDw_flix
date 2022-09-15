@@ -1,5 +1,5 @@
 <script setup>
-import HeaderComp from "./components/HeaderComp.vue";
+import HeaderComp from "@/components/HeaderComp.vue";
 </script>
 
 <template>
@@ -9,5 +9,4 @@ import HeaderComp from "./components/HeaderComp.vue";
   </main>
 </template>
 
-<style scoped>
-</style>
+<style></style>
