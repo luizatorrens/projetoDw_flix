@@ -10,8 +10,4 @@ import CarouselComp from "./CarouselComp.vue";
   </header>
 </template>
 
-<style>
-header {
-  background-color: aquamarine;
-}
-</style>
+<style></style>
