@@ -9,4 +9,6 @@ import HeaderComp from "@/components/HeaderComp.vue";
   </main>
 </template>
 
-<style></style>
+<style>
+
+</style>
