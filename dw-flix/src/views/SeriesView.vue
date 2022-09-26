@@ -60,5 +60,6 @@ export default {
 }
 h2 {
   background-color: black;
+  margin-bottom: 0;
 }
 </style>
