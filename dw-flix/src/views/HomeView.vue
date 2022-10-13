@@ -5,6 +5,9 @@ import CardSerie from "../components/séries/CardSerie.vue";
 import MoviesAPI from "../api/movies";
 const moviesApi = new MoviesAPI();
 
+import SeriesAPI from "../api/series";
+const seriesApi = new SeriesAPI();
+
 export default {
   components: { CardMovie, CardSerie },
   data() {
@@ -16,6 +19,7 @@ export default {
   async created() {
     try {
       this.movies = await moviesApi.getPopular();
+      this.series = await seriesApi.getPopular();
     } catch (e) {
       alert("erro");
     }
@@ -33,7 +37,11 @@ export default {
   </div>
   <h2 class="fs-1 text-light text-center p-2">Séries</h2>
   <div class="card-group card-filmes">
-    <CardSerie v-for="serie of series" :key="serie.id" :serie="serie" />
+    <CardSerie
+      v-for="serie of series.slice(0, 6)"
+      :key="serie.id"
+      :serie="serie"
+    />
   </div>
 </template>
 

@@ -7,14 +7,17 @@ export default {
   },
   methods: {
     mostrarSerie() {
-      alert(this.serie.autor);
+      alert(this.serie.id);
+    },
+    getImageUrl(poster_path) {
+      return `https://image.tmdb.org/t/p/w500${poster_path}`;
     },
   },
 };
 </script>
 <template>
   <div @click="mostrarSerie" class="card m-2">
-    <img :src="serie.imagem" class="card-img-top" alt="..." />
-    {{ serie.autor }}
+    <img :src="getImageUrl(serie.poster_path)" class="card-img-top" alt="..." />
+    {{ serie.id }}
   </div>
 </template>
