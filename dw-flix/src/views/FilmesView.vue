@@ -1,58 +1,68 @@
 <script>
 import CardMovie from "../components/filmes/CardMovie.vue";
+import InfoComp from "../components/InfoComp.vue";
+import MoviesAPI from "../api/movies";
+const moviesApi = new MoviesAPI();
 
 export default {
-  components: { CardMovie },
+  components: { CardMovie, Modal: InfoComp },
   data() {
     return {
-      movies: [
-        {
-          id: 1,
-          imagem: new URL("../assets/img/enrolados.jpg", import.meta.url).href,
-          autor: "Fulano",
-        },
-        {
-          id: 2,
-          imagem: new URL("../assets/img/Ameninalivros.jpg", import.meta.url)
-            .href,
-          autor: "Beltrano",
-        },
-        {
-          id: 3,
-          imagem: new URL("../assets/img/ACABANA.jpg", import.meta.url).href,
-        },
-        {
-          id: 4,
-          imagem: new URL("../assets/img/enrolados.jpg", import.meta.url).href,
-        },
-        {
-          id: 5,
-          imagem: new URL("../assets/img/Ameninalivros.jpg", import.meta.url)
-            .href,
-        },
-        {
-          id: 6,
-          imagem: new URL("../assets/img/ACABANA.jpg", import.meta.url).href,
-        },
-      ],
+      movies: [],
+      series: [],
+      filme_selecionado: {},
     };
+  },
+  async created() {
+    try {
+      this.movies = await moviesApi.getPopular();
+    } catch (e) {
+      alert("erro");
+    }
+  },
+  methods: {
+    selecionaFilme(filme) {
+      Object.assign(this.filme_selecionado, filme);
+    },
   },
 };
 </script>
 <template>
   <h2 class="fs-1 text-light text-center p-2">Comédia</h2>
   <div class="card-group card-filmes">
-    <CardMovie v-for="movie of movies" :key="movie.id" :filme="movie" />
+    <CardMovie
+      v-for="movie of movies.slice(0, 6)"
+      :key="movie.id"
+      :filme="movie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaFilme(movie)"
+    />
   </div>
   <h2 class="fs-1 text-light text-center p-2">Suspense</h2>
   <div class="card-group card-filmes">
-    <CardMovie v-for="movie of movies" :key="movie.id" :filme="movie" />
+    <CardMovie
+      v-for="movie of movies.slice(0, 6)"
+      :key="movie.id"
+      :filme="movie"
+      @click="selecionaFilme(movie)"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    />
   </div>
   <h2 class="fs-1 text-light text-center p-2">Romance</h2>
   <div class="card-group card-filmes">
-    <CardMovie v-for="movie of movies" :key="movie.id" :filme="movie" />
+    <CardMovie
+      v-for="movie of movies.slice(0, 6)"
+      :key="movie.id"
+      :filme="movie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaFilme(movie)"
+    />
   </div>
-  
+
+  <Modal :filme="filme_selecionado" />
 </template>
 
 <style scooped>

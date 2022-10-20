@@ -33,7 +33,8 @@ export default {
       v-for="movie of movies.slice(0, 6)"
       :key="movie.id"
       :filme="movie"
-    />
+    >
+    </CardMovie>
   </div>
   <h2 class="fs-1 text-light text-center p-2">Séries</h2>
   <div class="card-group card-filmes">
