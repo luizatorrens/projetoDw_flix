@@ -4,7 +4,9 @@ const moviesApi = new MoviesAPI();
 
 export default {
   props: {
-    filme: {},
+    filme: {
+      type: Object,
+    },
   },
   async created() {
     try {
@@ -12,6 +14,11 @@ export default {
     } catch (e) {
       alert("erro");
     }
+  },
+  methods: {
+    getImageUrl(poster_path) {
+      return `https://image.tmdb.org/t/p/w500${poster_path}`;
+    },
   },
 };
 </script>
@@ -34,7 +41,10 @@ export default {
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">...</div>
+        <div class="modal-body">
+          <img :src="getImageUrl(filme.poster_path)" class="card-img-top w-30 p-3 d-flex justify-content-start" alt="..." />
+          <h5 class="d-flex justify-content-end"> Sinopse: {{ filme.overview }}</h5>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
         </div>
