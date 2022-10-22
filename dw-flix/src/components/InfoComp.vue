@@ -41,9 +41,13 @@ export default {
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
-          <img :src="getImageUrl(filme.poster_path)" class="card-img-top w-30 p-3 d-flex justify-content-start" alt="..." />
-          <h5 class="d-flex justify-content-end"> Sinopse: {{ filme.overview }}</h5>
+        <div class="modal-body row">
+          <div class="col-md-4">
+            <img :src="getImageUrl(filme.poster_path)" class="card-img-top img-fluid rounded-start" alt="..." />
+          </div>
+          <div class="col-md-8">
+            <h5 class="d-flex justify-content-end"> Sinopse: {{ filme.overview }}</h5>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
@@ -52,3 +56,9 @@ export default {
     </div>
   </div>
 </template>
+
+<style>
+  h5 {
+    font-size: large;
+  }
+</style>
