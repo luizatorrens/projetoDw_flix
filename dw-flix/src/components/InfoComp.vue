@@ -8,13 +8,6 @@ export default {
       type: Object,
     },
   },
-  async created() {
-    try {
-      this.movies = await moviesApi.getPopular();
-    } catch (e) {
-      alert("erro");
-    }
-  },
   methods: {
     getImageUrl(poster_path) {
       return `https://image.tmdb.org/t/p/w500${poster_path}`;

@@ -10,12 +10,20 @@ export default {
     return {
       movies: [],
       series: [],
-      filme_selecionado: {},
+      romances: [],
+      comedias: [],
+      familias: [],
+      ficcoes: [],
+      filme_selecionado: [],
     };
   },
   async created() {
     try {
       this.movies = await moviesApi.getPopular();
+      this.romances = await moviesApi.getRomances();
+      this.comedias = await moviesApi.getComedias();
+      this.familias = await moviesApi.getFamilias();
+      this.ficcoes = await moviesApi.getFiccoes();
     } catch (e) {
       alert("erro");
     }
@@ -28,7 +36,7 @@ export default {
 };
 </script>
 <template>
-  <h2 class="fs-1 text-light text-center p-2">Comédia</h2>
+  <h2 class="fs-1 text-light text-center p-2">Populares</h2>
   <div class="card-group card-filmes">
     <CardMovie
       v-for="movie of movies.slice(0, 6)"
@@ -39,10 +47,21 @@ export default {
       @click="selecionaFilme(movie)"
     />
   </div>
-  <h2 class="fs-1 text-light text-center p-2">Suspense</h2>
+  <h2 class="fs-1 text-light text-center p-2">Comedias</h2>
   <div class="card-group card-filmes">
     <CardMovie
-      v-for="movie of movies.slice(0, 6)"
+      v-for="movie of comedias.slice(0, 6)"
+      :key="movie.id"
+      :filme="movie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaFilme(movie)"
+    />
+  </div>
+  <h2 class="fs-1 text-light text-center p-2">Família</h2>
+  <div class="card-group card-filmes">
+    <CardMovie
+      v-for="movie of familias.slice(0, 6)"
       :key="movie.id"
       :filme="movie"
       @click="selecionaFilme(movie)"
@@ -53,7 +72,18 @@ export default {
   <h2 class="fs-1 text-light text-center p-2">Romance</h2>
   <div class="card-group card-filmes">
     <CardMovie
-      v-for="movie of movies.slice(0, 6)"
+      v-for="movie of romances.slice(0, 6)"
+      :key="movie.id"
+      :filme="movie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaFilme(movie)"
+    />
+  </div>
+  <h2 class="fs-1 text-light text-center p-2">Ficção Científica</h2>
+  <div class="card-group card-filmes">
+    <CardMovie
+      v-for="movie of ficcoes.slice(0, 6)"
       :key="movie.id"
       :filme="movie"
       data-bs-toggle="modal"
