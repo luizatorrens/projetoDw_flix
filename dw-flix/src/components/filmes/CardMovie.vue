@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    filme: {
+    content: {
       type: Object,
     },
   },
@@ -15,7 +15,7 @@ export default {
 <template>
   <div @click="mostrarFilme" class="card m-2">
     <slot></slot>
-    <img :src="getImageUrl(filme.poster_path)" class="card-img-top" alt="..." />
-    {{ filme.title }}
+    <img :src="getImageUrl(content.poster_path)" class="card-img-top" alt="..." />
+    {{ content.title }}
   </div>
 </template>

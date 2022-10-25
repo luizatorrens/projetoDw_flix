@@ -1,10 +1,10 @@
 <script>
 import MoviesAPI from "../api/movies";
-const moviesApi = new MoviesAPI();
+import SeriesAPI from "../api/series"
 
 export default {
   props: {
-    filme: {
+    content: {
       type: Object,
     },
   },
@@ -26,7 +26,7 @@ export default {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{ filme.title }}</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{ content.title || content.name }}</h5>
           <button
             type="button"
             class="btn-close"
@@ -36,10 +36,10 @@ export default {
         </div>
         <div class="modal-body row">
           <div class="col-md-4">
-            <img :src="getImageUrl(filme.poster_path)" class="card-img-top img-fluid rounded-start" alt="..." />
+            <img :src="getImageUrl(content.poster_path)" class="card-img-top img-fluid rounded-start" alt="..." />
           </div>
           <div class="col-md-8">
-            <h5 class="d-flex justify-content-end"> Sinopse: {{ filme.overview }}</h5>
+            <h5 class="d-flex justify-content-end"> Sinopse: {{ content.overview }}</h5>
           </div>
         </div>
         <div class="modal-footer">

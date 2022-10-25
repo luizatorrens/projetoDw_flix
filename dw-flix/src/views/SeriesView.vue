@@ -1,53 +1,47 @@
 <script>
 import CardSerie from "../components/séries/CardSerie.vue";
+import InfoComp from "../components/InfoComp.vue";
+import SeriesAPI from "../api/series.js";
+const seriesApi = new SeriesAPI();
 
 export default {
-  components: { CardSerie },
+  components: { CardSerie, Modal: InfoComp },
   data() {
     return {
-      series: [
-        {
-          id: 7,
-          imagem: new URL("../assets/img/enrolados.jpg", import.meta.url).href,
-          autor: "Fulano",
-        },
-        {
-          id: 8,
-          imagem: new URL("../assets/img/Ameninalivros.jpg", import.meta.url)
-            .href,
-          autor: "Beltrano",
-        },
-        {
-          id: 9,
-          imagem: new URL("../assets/img/ACABANA.jpg", import.meta.url).href,
-        },
-        {
-          id: 10,
-          imagem: new URL("../assets/img/enrolados.jpg", import.meta.url).href,
-        },
-        {
-          id: 11,
-          imagem: new URL("../assets/img/Ameninalivros.jpg", import.meta.url)
-            .href,
-        },
-        {
-          id: 12,
-          imagem: new URL("../assets/img/ACABANA.jpg", import.meta.url).href,
-        },
-      ],
+      series: [],
+      serie_selecionada: {}
     };
+  },
+  async created() {
+    try {
+      this.series = await seriesApi.getPopular();
+    } catch (e) {
+      alert("erro");
+    }
+  },
+  methods: {
+    selecionaSerie(serie) {
+      // Object.assign(this.serie_selecionada, serie);
+      this.serie_selecionada = serie
+    },
   },
 };
 </script>
 <template>
-  <h2 class="fs-1 text-light text-center p-2">Romance</h2>
+  <h2 class="fs-1 text-light text-center p-2">Populares</h2>
   <div class="card-group card-filmes">
-    <CardSerie v-for="serie of series" :key="serie.id" :serie="serie" />
+    <CardSerie
+      v-for="serie of series.slice(0, 6)"
+      :key="serie.id"
+      :content="serie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaSerie(serie)"
+    />
   </div>
-  <h2 class="fs-1 text-light text-center p-2">Comédia</h2>
-  <div class="card-group card-filmes">
-    <CardSerie v-for="serie of series" :key="serie.id" :serie="serie" />
-  </div>
+
+  <Modal :content="serie_selecionada" />
+
 </template>
 
 <style scooped>

@@ -41,7 +41,7 @@ export default {
     <CardMovie
       v-for="movie of movies.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       @click="selecionaFilme(movie)"
@@ -52,7 +52,7 @@ export default {
     <CardMovie
       v-for="movie of comedias.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       @click="selecionaFilme(movie)"
@@ -63,7 +63,7 @@ export default {
     <CardMovie
       v-for="movie of familias.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
       @click="selecionaFilme(movie)"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
@@ -74,7 +74,7 @@ export default {
     <CardMovie
       v-for="movie of romances.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       @click="selecionaFilme(movie)"
@@ -85,14 +85,14 @@ export default {
     <CardMovie
       v-for="movie of ficcoes.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
       @click="selecionaFilme(movie)"
     />
   </div>
 
-  <Modal :filme="filme_selecionado" />
+  <Modal :content="filme_selecionado" />
 </template>
 
 <style scooped>

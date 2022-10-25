@@ -32,7 +32,7 @@ export default {
     <CardMovie
       v-for="movie of movies.slice(0, 6)"
       :key="movie.id"
-      :filme="movie"
+      :content="movie"
     >
     </CardMovie>
   </div>
@@ -41,7 +41,7 @@ export default {
     <CardSerie
       v-for="serie of series.slice(0, 6)"
       :key="serie.id"
-      :serie="serie"
+      :content="serie"
     />
   </div>
 </template>
