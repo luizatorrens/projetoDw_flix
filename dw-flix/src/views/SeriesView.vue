@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       series: [],
-      serie_selecionada: {}
+      serie_selecionada: {},
     };
   },
   async created() {
@@ -21,8 +21,7 @@ export default {
   },
   methods: {
     selecionaSerie(serie) {
-      // Object.assign(this.serie_selecionada, serie);
-      this.serie_selecionada = serie
+      this.serie_selecionada = serie;
     },
   },
 };
@@ -41,7 +40,6 @@ export default {
   </div>
 
   <Modal :content="serie_selecionada" />
-
 </template>
 
 <style scooped>

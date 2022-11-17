@@ -1,6 +1,7 @@
 <script>
 import CardMovie from "../components/filmes/CardMovie.vue";
 import CardSerie from "../components/séries/CardSerie.vue";
+import InfoComp from "../components/InfoComp.vue";
 
 import MoviesAPI from "../api/movies";
 const moviesApi = new MoviesAPI();
@@ -9,11 +10,13 @@ import SeriesAPI from "../api/series";
 const seriesApi = new SeriesAPI();
 
 export default {
-  components: { CardMovie, CardSerie },
+  components: { CardMovie, CardSerie, Modal: InfoComp },
   data() {
     return {
       movies: [],
       series: [],
+      filme_selecionado: [],
+      serie_selecionada: [],
     };
   },
   async created() {
@@ -24,6 +27,14 @@ export default {
       alert("erro");
     }
   },
+  methods: {
+    selecionaFilme(filme) {
+      this.filme_selecionado = filme;
+    },
+    selecionaSerie(serie) {
+      this.serie_selecionada = serie;
+    },
+  },
 };
 </script>
 <template>
@@ -33,6 +44,9 @@ export default {
       v-for="movie of movies.slice(0, 6)"
       :key="movie.id"
       :content="movie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaFilme(movie)"
     >
     </CardMovie>
   </div>
@@ -42,8 +56,13 @@ export default {
       v-for="serie of series.slice(0, 6)"
       :key="serie.id"
       :content="serie"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      @click="selecionaSerie(serie)"
     />
   </div>
+
+  <Modal :content="filme_selecionado" />
 </template>
 
 <style scooped>
