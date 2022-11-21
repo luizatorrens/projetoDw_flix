@@ -15,8 +15,7 @@ export default {
     return {
       movies: [],
       series: [],
-      filme_selecionado: [],
-      serie_selecionada: [],
+      item_selecionado: [],
     };
   },
   async created() {
@@ -29,10 +28,10 @@ export default {
   },
   methods: {
     selecionaFilme(filme) {
-      this.filme_selecionado = filme;
+      this.item_selecionado = filme;
     },
     selecionaSerie(serie) {
-      this.serie_selecionada = serie;
+      this.item_selecionado = serie;
     },
   },
 };
@@ -62,7 +61,7 @@ export default {
     />
   </div>
 
-  <Modal :content="filme_selecionado" />
+  <Modal :content="item_selecionado" />
 </template>
 
 <style scooped>
