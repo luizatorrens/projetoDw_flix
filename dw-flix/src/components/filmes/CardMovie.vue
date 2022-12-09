@@ -15,7 +15,12 @@ export default {
 <template>
   <div @click="mostrarFilme" class="card m-2">
     <slot></slot>
-    <img :src="getImageUrl(content.poster_path)" class="card-img-top" alt="..." />
+    <img :src="getImageUrl(content.poster_path)" class="card-img-top" alt="..." id="card" />
     {{ content.title }}
   </div>
 </template>
+
+<style>
+#card{position:relative}
+#card:hover{top:-10px;box-shadow:0 10px 10px rgb(0, 0, 0)}
+</style>
